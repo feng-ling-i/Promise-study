@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>点击抽奖</button>
+    <script>
+        // 生成随机数函数
+        let rand = (m, n) => Math.ceil(Math.random() * (n - m + 1) + m - 1);
+        const btn = document.querySelector('button');
+        btn.addEventListener('click', () => {
+            // setTimeout(() => {
+            //     let num = rand(1, 100);
+            //     if (num <= 30) {
+            //         alert('恭喜恭喜，奖品为大神一个');
+            //     } else {
+            //         alert('再接再厉');
+            //     }
+            // }, 2000)
+            const p = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    let num = rand(1, 100);
+                    if (num <= 30) {
+                        resolve(num);//将Promise对象的状态设置为成功
+                    } else {
+                        reject(num);//将Promise对象的状态设置为失败
+                    }
+                }, 2000);
+
+            });
+            // 调用then方法
+            p.then((value) => {
+                alert('恭喜恭喜，奖品为大神一个 你的中奖数字为' + value);
+            }, (reason) => { alert('再接再厉 你的号码为' + reason); })
+        });
+    </script>
+</body>
+
+</html>
